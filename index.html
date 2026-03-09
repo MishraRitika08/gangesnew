@@ -707,9 +707,6 @@ function renderProducts() {
 }
 
 // ─────────────────────────────────────
-//  CART ACTIONS
-// ─────────────────────────────────────
-// ─────────────────────────────────────
 //  CART ACTIONS WITH GA4 TRACKING
 // ─────────────────────────────────────
 function addToCart(id) {
@@ -718,7 +715,7 @@ function addToCart(id) {
   updateCartUI();
   openCart();
 
-  // ----- GA4 Tracking -----
+  // ----- GA4 Add to Cart Tracking -----
   const product = PRODUCTS.find(p => p.id === id);
   if (product && typeof gtag === 'function') {
     gtag('event', 'add_to_cart', {
@@ -815,6 +812,116 @@ function renderCartItems() {
       </div>`;
   }).join('');
 }
+
+// // ─────────────────────────────────────
+// //  CART ACTIONS
+// // ─────────────────────────────────────
+// // ─────────────────────────────────────
+// //  CART ACTIONS WITH GA4 TRACKING
+// // ─────────────────────────────────────
+// function addToCart(id) {
+//   cart[id] = (cart[id] || 0) + 1;
+//   updateProductBtn(id);
+//   updateCartUI();
+//   openCart();
+
+//   // ----- GA4 Tracking -----
+//   const product = PRODUCTS.find(p => p.id === id);
+//   if (product && typeof gtag === 'function') {
+//     gtag('event', 'add_to_cart', {
+//       currency: 'INR',
+//       value: product.price,
+//       items: [{
+//         item_id: product.id,
+//         item_name: product.name,
+//         price: product.price
+//       }]
+//     });
+//     console.log(`GA4: Added ${product.name} to cart`);
+//   }
+// }
+
+// function changeQty(id, delta) {
+//   cart[id] = (cart[id] || 0) + delta;
+//   if (cart[id] <= 0) delete cart[id];
+//   updateProductBtn(id);
+//   updateCartUI();
+// }
+
+// function updateProductBtn(id) {
+//   const qty = cart[id] || 0;
+//   const atcBtn = document.querySelector(`#atcWrap${id} .add-to-cart-btn`);
+//   const qtyCtrl = document.getElementById(`qtyCtr${id}`);
+//   const qtyNum = document.getElementById(`qtyNum${id}`);
+//   if (!atcBtn) return;
+//   if (qty > 0) {
+//     atcBtn.style.display = 'none';
+//     qtyCtrl.classList.add('show');
+//     qtyNum.textContent = qty;
+//   } else {
+//     atcBtn.style.display = '';
+//     qtyCtrl.classList.remove('show');
+//   }
+// }
+
+// function removeFromCart(id) {
+//   delete cart[id];
+//   updateProductBtn(id);
+//   updateCartUI();
+// }
+
+// function updateCartUI() {
+//   const count = cartItemCount();
+//   const countEl = document.getElementById('cartCount');
+//   countEl.textContent = count;
+//   count > 0 ? countEl.classList.add('show') : countEl.classList.remove('show');
+
+//   const subtotal = cartTotal();
+//   const delivery = getDeliveryFee(subtotal);
+//   const total = subtotal + delivery;
+
+//   document.getElementById('cartSubtotal').textContent = `₹${subtotal}`;
+//   document.getElementById('cartDelivery').textContent = `₹${delivery}`;
+//   document.getElementById('cartTotal').textContent = `₹${total}`;
+
+//   const freeRow = document.getElementById('freeDeliveryRow');
+//   const paidRow = document.getElementById('deliveryRow');
+//   if (delivery === 0 && subtotal > 0) {
+//     freeRow.style.display = 'flex'; paidRow.style.display = 'none';
+//   } else {
+//     freeRow.style.display = 'none'; paidRow.style.display = 'flex';
+//   }
+
+//   renderCartItems();
+//   document.getElementById('cartFooter').style.display = count > 0 ? 'block' : 'none';
+// }
+
+// function renderCartItems() {
+//   const el = document.getElementById('cartItems');
+//   const entries = Object.entries(cart);
+//   if (entries.length === 0) {
+//     el.innerHTML = `<div class="cart-empty"><span class="cart-empty-icon">🛍️</span><p>Your cart is empty</p><p style="font-size:0.82rem;margin-top:0.4rem;">Add items from the shop below</p></div>`;
+//     return;
+//   }
+//   el.innerHTML = entries.map(([id,qty]) => {
+//     const p = PRODUCTS.find(p => p.id === +id);
+//     if (!p) return '';
+//     return `
+//       <div class="cart-item">
+//         <div class="ci-emoji">${p.emoji}</div>
+//         <div class="ci-info">
+//           <div class="ci-name">${p.name}</div>
+//           <div class="ci-price">₹${p.price} × ${qty} = ₹${p.price * qty}</div>
+//         </div>
+//         <div class="ci-qty">
+//           <button class="ci-qty-btn" onclick="changeQty(${id},-1)">−</button>
+//           <span class="ci-qty-num">${qty}</span>
+//           <button class="ci-qty-btn" onclick="changeQty(${id},1)">+</button>
+//         </div>
+//         <button class="ci-remove" onclick="removeFromCart(${id})">🗑</button>
+//       </div>`;
+//   }).join('');
+// }
 
 // ─────────────────────────────────────
 //  CART OPEN/CLOSE
