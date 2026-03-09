@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!DOCTYPE html>
-<html>
-<head>
-
-<head>
-
+  
 <title>Ganges Shopping</title>
 
 <!-- Google Analytics -->
@@ -15,14 +10,11 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-2XQ13LLW2E');  <!-- This must match the Measurement ID -->
+  gtag('config', 'G-2XQ13LLW2E');
 </script>
 
 </head>
 
-<title>Ganges Grocery</title>
-
-</head>
 <body>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -313,29 +305,9 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
 .upi-panel { display: none; }
 .upi-panel.show { display: block; }
 .upi-qr { background: white; border: 2px dashed rgba(212,168,67,0.4); border-radius: 1rem; padding: 2rem; text-align: center; margin-bottom: 1rem; }
-.upi-qr-grid { display: grid; grid-template-columns: repeat(7,1fr); grid-template-rows: repeat(7,1fr); gap: 3px; width: 120px; margin: 0 auto 1rem; }
-.qr-cell { border-radius: 2px; background: var(--deep); }
-.qr-light { background: transparent; }
 .upi-id { font-size: 0.9rem; font-weight: 600; color: var(--text); letter-spacing: 0.5px; }
 .upi-amount { font-size: 1.4rem; font-weight: 700; color: var(--saffron); font-family: 'Playfair Display', serif; margin: 0.3rem 0; }
 .upi-note { font-size: 0.75rem; color: var(--muted); }
-
-/* Card panel */
-.card-panel { display: none; }
-.card-panel.show { display: block; }
-.card-visual {
-  background: linear-gradient(135deg, var(--deep), #3A2810);
-  border-radius: 1rem; padding: 1.5rem; color: white; margin-bottom: 1.2rem;
-  position: relative; overflow: hidden;
-}
-.card-visual::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(232,131,42,0.15); }
-.card-chip { font-size: 1.6rem; margin-bottom: 0.8rem; display: block; }
-.card-number-display { font-size: 1.1rem; letter-spacing: 3px; font-family: monospace; margin-bottom: 0.8rem; }
-.card-bottom { display: flex; justify-content: space-between; }
-.card-bottom span { font-size: 0.75rem; opacity: 0.7; }
-.card-bottom strong { display: block; font-size: 0.88rem; }
-.card-fields { display: flex; flex-direction: column; gap: 0.8rem; }
-.card-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
 
 /* COD panel */
 .cod-panel { display: none; }
@@ -344,14 +316,6 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
 .cod-icon { font-size: 2rem; flex-shrink: 0; }
 .cod-text { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 .cod-text strong { color: var(--text); display: block; margin-bottom: 0.3rem; }
-
-/* Net banking */
-.nb-panel { display: none; }
-.nb-panel.show { display: block; }
-.bank-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; margin-bottom: 1rem; }
-.bank-btn { border: 1.5px solid #eee; border-radius: 0.8rem; padding: 0.7rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; font-size: 0.78rem; font-weight: 500; color: var(--text); background: white; }
-.bank-btn:hover, .bank-btn.sel { border-color: var(--saffron); background: rgba(232,131,42,0.05); color: var(--saffron); }
-.bank-icon { font-size: 1.4rem; display: block; margin-bottom: 0.3rem; }
 
 /* Success screen */
 .success-screen { text-align: center; padding: 2rem 1rem; }
@@ -393,9 +357,6 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
   .chk-row { grid-template-columns: 1fr; }
 }
 </style>
-</head>
-
-<body>
 
 <!-- CART OVERLAY -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
@@ -429,9 +390,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
       <div class="modal-title" id="modalTitle">Checkout</div>
       <button class="modal-close" onclick="closeCheckout()">✕</button>
     </div>
-    <div class="modal-body" id="modalBody">
-      <!-- injected by JS -->
-    </div>
+    <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
 
@@ -539,9 +498,7 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
     <div class="section-tag">What We Offer</div>
     <h2 class="section-title">Fresh Picks &amp; Pantry Staples</h2>
   </div>
-  <div class="products-grid" id="productsGrid">
-    <!-- rendered by JS -->
-  </div>
+  <div class="products-grid" id="productsGrid"></div>
 </section>
 
 <!-- SERVICES -->
@@ -659,7 +616,7 @@ const PRODUCTS = [
 // ─────────────────────────────────────
 //  CART STATE
 // ─────────────────────────────────────
-let cart = {}; // { productId: qty }
+let cart = {};
 
 function getDeliveryFee(subtotal) {
   if (subtotal >= 500) return 0;
@@ -668,14 +625,24 @@ function getDeliveryFee(subtotal) {
 }
 
 function cartTotal() {
-  return Object.entries(cart).reduce((sum,[id,qty]) => {
+  return Object.entries(cart).reduce((sum, [id, qty]) => {
     const p = PRODUCTS.find(p => p.id === +id);
     return sum + (p ? p.price * qty : 0);
   }, 0);
 }
 
 function cartItemCount() {
-  return Object.values(cart).reduce((s,q) => s+q, 0);
+  return Object.values(cart).reduce((s, q) => s + q, 0);
+}
+
+// ─────────────────────────────────────
+//  GA4 HELPER — build items array
+// ─────────────────────────────────────
+function ga4Items(cartSnapshot) {
+  return Object.entries(cartSnapshot).map(([id, qty]) => {
+    const p = PRODUCTS.find(p => p.id === +id);
+    return { item_id: p.id, item_name: p.name, price: p.price, quantity: qty };
+  });
 }
 
 // ─────────────────────────────────────
@@ -684,7 +651,7 @@ function cartItemCount() {
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   grid.innerHTML = PRODUCTS.map(p => `
-    <div class="product-card">
+    <div class="product-card" data-product-id="${p.id}">
       <div class="product-img">${p.emoji}</div>
       <div class="product-info">
         <span class="product-tag tag-${p.tag}">${p.tagLabel}</span>
@@ -707,32 +674,57 @@ function renderProducts() {
 }
 
 // ─────────────────────────────────────
-//  CART ACTIONS WITH GA4 TRACKING
+//  CART ACTIONS
 // ─────────────────────────────────────
+
+// GA4: add_to_cart
 function addToCart(id) {
   cart[id] = (cart[id] || 0) + 1;
   updateProductBtn(id);
   updateCartUI();
   openCart();
 
-  // ----- GA4 Add to Cart Tracking -----
-  const product = PRODUCTS.find(p => p.id === id);
-  if (product && typeof gtag === 'function') {
+  const p = PRODUCTS.find(p => p.id === id);
+  if (p && typeof gtag === 'function') {
     gtag('event', 'add_to_cart', {
       currency: 'INR',
-      value: product.price,
-      items: [{
-        item_id: product.id,
-        item_name: product.name,
-        price: product.price
-      }]
+      value: p.price,
+      items: [{ item_id: p.id, item_name: p.name, price: p.price, quantity: 1 }]
     });
-    console.log(`GA4: Added ${product.name} to cart`);
   }
 }
 
+// GA4: remove_from_cart (full remove via trash icon)
+function removeFromCart(id) {
+  const p = PRODUCTS.find(p => p.id === +id);
+  if (p && typeof gtag === 'function') {
+    gtag('event', 'remove_from_cart', {
+      currency: 'INR',
+      value: p.price * (cart[id] || 1),
+      items: [{ item_id: p.id, item_name: p.name, price: p.price, quantity: cart[id] || 1 }]
+    });
+  }
+  delete cart[id];
+  updateProductBtn(id);
+  updateCartUI();
+}
+
+// GA4: remove_from_cart when qty decremented to 0
 function changeQty(id, delta) {
-  cart[id] = (cart[id] || 0) + delta;
+  const prevQty = cart[id] || 0;
+  cart[id] = prevQty + delta;
+
+  if (delta < 0 && typeof gtag === 'function') {
+    const p = PRODUCTS.find(p => p.id === +id);
+    if (p) {
+      gtag('event', 'remove_from_cart', {
+        currency: 'INR',
+        value: p.price,
+        items: [{ item_id: p.id, item_name: p.name, price: p.price, quantity: 1 }]
+      });
+    }
+  }
+
   if (cart[id] <= 0) delete cart[id];
   updateProductBtn(id);
   updateCartUI();
@@ -752,12 +744,6 @@ function updateProductBtn(id) {
     atcBtn.style.display = '';
     qtyCtrl.classList.remove('show');
   }
-}
-
-function removeFromCart(id) {
-  delete cart[id];
-  updateProductBtn(id);
-  updateCartUI();
 }
 
 function updateCartUI() {
@@ -793,7 +779,7 @@ function renderCartItems() {
     el.innerHTML = `<div class="cart-empty"><span class="cart-empty-icon">🛍️</span><p>Your cart is empty</p><p style="font-size:0.82rem;margin-top:0.4rem;">Add items from the shop below</p></div>`;
     return;
   }
-  el.innerHTML = entries.map(([id,qty]) => {
+  el.innerHTML = entries.map(([id, qty]) => {
     const p = PRODUCTS.find(p => p.id === +id);
     if (!p) return '';
     return `
@@ -813,124 +799,25 @@ function renderCartItems() {
   }).join('');
 }
 
-// // ─────────────────────────────────────
-// //  CART ACTIONS
-// // ─────────────────────────────────────
-// // ─────────────────────────────────────
-// //  CART ACTIONS WITH GA4 TRACKING
-// // ─────────────────────────────────────
-// function addToCart(id) {
-//   cart[id] = (cart[id] || 0) + 1;
-//   updateProductBtn(id);
-//   updateCartUI();
-//   openCart();
-
-//   // ----- GA4 Tracking -----
-//   const product = PRODUCTS.find(p => p.id === id);
-//   if (product && typeof gtag === 'function') {
-//     gtag('event', 'add_to_cart', {
-//       currency: 'INR',
-//       value: product.price,
-//       items: [{
-//         item_id: product.id,
-//         item_name: product.name,
-//         price: product.price
-//       }]
-//     });
-//     console.log(`GA4: Added ${product.name} to cart`);
-//   }
-// }
-
-// function changeQty(id, delta) {
-//   cart[id] = (cart[id] || 0) + delta;
-//   if (cart[id] <= 0) delete cart[id];
-//   updateProductBtn(id);
-//   updateCartUI();
-// }
-
-// function updateProductBtn(id) {
-//   const qty = cart[id] || 0;
-//   const atcBtn = document.querySelector(`#atcWrap${id} .add-to-cart-btn`);
-//   const qtyCtrl = document.getElementById(`qtyCtr${id}`);
-//   const qtyNum = document.getElementById(`qtyNum${id}`);
-//   if (!atcBtn) return;
-//   if (qty > 0) {
-//     atcBtn.style.display = 'none';
-//     qtyCtrl.classList.add('show');
-//     qtyNum.textContent = qty;
-//   } else {
-//     atcBtn.style.display = '';
-//     qtyCtrl.classList.remove('show');
-//   }
-// }
-
-// function removeFromCart(id) {
-//   delete cart[id];
-//   updateProductBtn(id);
-//   updateCartUI();
-// }
-
-// function updateCartUI() {
-//   const count = cartItemCount();
-//   const countEl = document.getElementById('cartCount');
-//   countEl.textContent = count;
-//   count > 0 ? countEl.classList.add('show') : countEl.classList.remove('show');
-
-//   const subtotal = cartTotal();
-//   const delivery = getDeliveryFee(subtotal);
-//   const total = subtotal + delivery;
-
-//   document.getElementById('cartSubtotal').textContent = `₹${subtotal}`;
-//   document.getElementById('cartDelivery').textContent = `₹${delivery}`;
-//   document.getElementById('cartTotal').textContent = `₹${total}`;
-
-//   const freeRow = document.getElementById('freeDeliveryRow');
-//   const paidRow = document.getElementById('deliveryRow');
-//   if (delivery === 0 && subtotal > 0) {
-//     freeRow.style.display = 'flex'; paidRow.style.display = 'none';
-//   } else {
-//     freeRow.style.display = 'none'; paidRow.style.display = 'flex';
-//   }
-
-//   renderCartItems();
-//   document.getElementById('cartFooter').style.display = count > 0 ? 'block' : 'none';
-// }
-
-// function renderCartItems() {
-//   const el = document.getElementById('cartItems');
-//   const entries = Object.entries(cart);
-//   if (entries.length === 0) {
-//     el.innerHTML = `<div class="cart-empty"><span class="cart-empty-icon">🛍️</span><p>Your cart is empty</p><p style="font-size:0.82rem;margin-top:0.4rem;">Add items from the shop below</p></div>`;
-//     return;
-//   }
-//   el.innerHTML = entries.map(([id,qty]) => {
-//     const p = PRODUCTS.find(p => p.id === +id);
-//     if (!p) return '';
-//     return `
-//       <div class="cart-item">
-//         <div class="ci-emoji">${p.emoji}</div>
-//         <div class="ci-info">
-//           <div class="ci-name">${p.name}</div>
-//           <div class="ci-price">₹${p.price} × ${qty} = ₹${p.price * qty}</div>
-//         </div>
-//         <div class="ci-qty">
-//           <button class="ci-qty-btn" onclick="changeQty(${id},-1)">−</button>
-//           <span class="ci-qty-num">${qty}</span>
-//           <button class="ci-qty-btn" onclick="changeQty(${id},1)">+</button>
-//         </div>
-//         <button class="ci-remove" onclick="removeFromCart(${id})">🗑</button>
-//       </div>`;
-//   }).join('');
-// }
-
 // ─────────────────────────────────────
 //  CART OPEN/CLOSE
 // ─────────────────────────────────────
+
+// GA4: view_cart
 function openCart() {
   document.getElementById('cartDrawer').classList.add('open');
   document.getElementById('cartOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  if (typeof gtag === 'function' && Object.keys(cart).length > 0) {
+    gtag('event', 'view_cart', {
+      currency: 'INR',
+      value: cartTotal(),
+      items: ga4Items(cart)
+    });
+  }
 }
+
 function closeCart() {
   document.getElementById('cartDrawer').classList.remove('open');
   document.getElementById('cartOverlay').classList.remove('open');
@@ -943,8 +830,19 @@ function closeCart() {
 let checkoutStep = 1;
 let checkoutData = {};
 
+// GA4: begin_checkout
 function openCheckout() {
   closeCart();
+
+  if (typeof gtag === 'function') {
+    const subtotal = cartTotal();
+    gtag('event', 'begin_checkout', {
+      currency: 'INR',
+      value: subtotal + getDeliveryFee(subtotal),
+      items: ga4Items(cart)
+    });
+  }
+
   checkoutStep = 1;
   checkoutData = {};
   renderCheckoutStep();
@@ -959,10 +857,10 @@ function closeCheckout() {
 
 function stepsHTML(current) {
   const steps = ['Delivery', 'Payment', 'Confirm'];
-  return `<div class="checkout-steps">` + steps.map((s,i) => {
-    const n = i+1;
+  return `<div class="checkout-steps">` + steps.map((s, i) => {
+    const n = i + 1;
     const cls = n < current ? 'cstep done' : n === current ? 'cstep active' : 'cstep';
-    const line = i < steps.length-1 ? `<div class="cstep-line ${n < current ? 'done' : ''}"></div>` : '';
+    const line = i < steps.length - 1 ? `<div class="cstep-line ${n < current ? 'done' : ''}"></div>` : '';
     return `<div class="${cls}"><div class="cstep-num">${n < current ? '✓' : n}</div><div class="cstep-label">${s}</div></div>${line}`;
   }).join('') + `</div>`;
 }
@@ -970,14 +868,14 @@ function stepsHTML(current) {
 function orderSummaryHTML() {
   const subtotal = cartTotal();
   const delivery = getDeliveryFee(subtotal);
-  const entries = Object.entries(cart).map(([id,qty]) => {
-    const p = PRODUCTS.find(p=>p.id===+id);
-    return `<div class="chk-order-row"><span>${p.emoji} ${p.name} ×${qty}</span><span>₹${p.price*qty}</span></div>`;
+  const entries = Object.entries(cart).map(([id, qty]) => {
+    const p = PRODUCTS.find(p => p.id === +id);
+    return `<div class="chk-order-row"><span>${p.emoji} ${p.name} ×${qty}</span><span>₹${p.price * qty}</span></div>`;
   }).join('');
   return `<div class="chk-order-summary">
     ${entries}
-    <div class="chk-order-row"><span>Delivery</span><span>${delivery===0?'<span style="color:#4A7C28">FREE</span>':'₹'+delivery}</span></div>
-    <div class="chk-order-row bold"><span>Total</span><span>₹${subtotal+delivery}</span></div>
+    <div class="chk-order-row"><span>Delivery</span><span>${delivery === 0 ? '<span style="color:#4A7C28">FREE</span>' : '₹' + delivery}</span></div>
+    <div class="chk-order-row bold"><span>Total</span><span>₹${subtotal + delivery}</span></div>
   </div>`;
 }
 
@@ -990,18 +888,18 @@ function renderCheckoutStep() {
     body.innerHTML = stepsHTML(1) + orderSummaryHTML() + `
       <div class="chk-section">
         <label class="chk-label">Full Name</label>
-        <input class="chk-input" id="chkName" placeholder="Your full name" value="${checkoutData.name||''}">
+        <input class="chk-input" id="chkName" placeholder="Your full name" value="${checkoutData.name || ''}">
       </div>
       <div class="chk-section">
         <label class="chk-label">Phone Number</label>
-        <input class="chk-input" id="chkPhone" type="tel" placeholder="+91 98765 43210" value="${checkoutData.phone||''}">
+        <input class="chk-input" id="chkPhone" type="tel" placeholder="+91 98765 43210" value="${checkoutData.phone || ''}">
       </div>
       <div class="chk-section">
         <label class="chk-label">Delivery Address</label>
-        <input class="chk-input" id="chkAddr" placeholder="House no., Street, Area" style="margin-bottom:0.6rem;" value="${checkoutData.addr||''}">
+        <input class="chk-input" id="chkAddr" placeholder="House no., Street, Area" style="margin-bottom:0.6rem;" value="${checkoutData.addr || ''}">
         <div class="chk-row">
-          <input class="chk-input" id="chkCity" placeholder="City" value="${checkoutData.city||'Varanasi'}">
-          <input class="chk-input" id="chkPin" placeholder="PIN Code" value="${checkoutData.pin||''}">
+          <input class="chk-input" id="chkCity" placeholder="City" value="${checkoutData.city || 'Varanasi'}">
+          <input class="chk-input" id="chkPin" placeholder="PIN Code" value="${checkoutData.pin || ''}">
         </div>
       </div>
       <button class="chk-btn" onclick="chkStep1Next()">Continue to Payment →</button>
@@ -1012,6 +910,16 @@ function renderCheckoutStep() {
     const subtotal = cartTotal();
     const total = subtotal + getDeliveryFee(subtotal);
     title.textContent = 'Choose Payment';
+
+    // GA4: add_payment_info (fires when payment step is shown)
+    if (typeof gtag === 'function') {
+      gtag('event', 'add_shipping_info', {
+        currency: 'INR',
+        value: total,
+        items: ga4Items(cart)
+      });
+    }
+
     body.innerHTML = stepsHTML(2) + `
       <div class="pay-methods" style="grid-template-columns:1fr 1fr;">
         <div class="pay-method" id="pm-upi" onclick="selectPayment('upi')">
@@ -1078,26 +986,6 @@ function renderCheckoutStep() {
         <input class="chk-input" placeholder="yourname@bank" id="upiId" style="background:var(--cream);color:var(--text);border-color:rgba(0,0,0,0.1);margin-bottom:0.5rem;">
       </div>
 
-      <!-- CARD REMOVED -->
-      <div class="card-panel" id="cardPanel" style="display:none!important;">
-        <div class="card-visual">
-          <span class="card-chip">💳</span>
-          <div class="card-number-display" id="cardDisplayNum">•••• •••• •••• ••••</div>
-          <div class="card-bottom">
-            <div><span>Card Holder</span><strong id="cardDisplayName">YOUR NAME</strong></div>
-            <div style="text-align:right;"><span>Expires</span><strong id="cardDisplayExp">MM/YY</strong></div>
-          </div>
-        </div>
-        <div class="card-fields">
-          <input class="chk-input" placeholder="Card Number" maxlength="19" oninput="fmtCard(this)" id="cardNum" style="background:var(--cream);color:var(--text);border-color:rgba(0,0,0,0.1);">
-          <input class="chk-input" placeholder="Cardholder Name" id="cardName" oninput="document.getElementById('cardDisplayName').textContent=this.value||'YOUR NAME'" style="background:var(--cream);color:var(--text);border-color:rgba(0,0,0,0.1);">
-          <div class="card-field-row">
-            <input class="chk-input" placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)" id="cardExp" style="background:var(--cream);color:var(--text);border-color:rgba(0,0,0,0.1);">
-            <input class="chk-input" placeholder="CVV" maxlength="3" type="password" id="cardCvv" style="background:var(--cream);color:var(--text);border-color:rgba(0,0,0,0.1);">
-          </div>
-        </div>
-      </div>
-
       <!-- COD -->
       <div class="cod-panel" id="codPanel">
         <div class="cod-info">
@@ -1109,9 +997,6 @@ function renderCheckoutStep() {
         </div>
       </div>
 
-      <!-- NET BANKING REMOVED -->
-      <div class="nb-panel" id="nbPanel" style="display:none!important;"></div>
-
       <div class="chk-footer-btns">
         <button class="chk-back" onclick="checkoutStep=1;renderCheckoutStep()">← Back</button>
         <button class="chk-btn" style="flex:1;margin-top:0;" onclick="chkStep2Next()">Pay ₹${total} →</button>
@@ -1122,13 +1007,26 @@ function renderCheckoutStep() {
   else if (checkoutStep === 3) {
     title.textContent = 'Order Confirmed!';
     const orderId = 'GG-' + Date.now().toString().slice(-8);
-    // clear cart
-    const items = Object.entries(cart).map(([id,qty]) => {
-      const p = PRODUCTS.find(p=>p.id===+id);
-      return `${p.emoji} ${p.name} ×${qty}`;
-    }).join(', ');
+
+    const subtotal = cartTotal();
+    const delivery = getDeliveryFee(subtotal);
+    const total = subtotal + delivery;
+
+    // GA4: purchase — fire BEFORE clearing cart
+    if (typeof gtag === 'function') {
+      gtag('event', 'purchase', {
+        transaction_id: orderId,
+        currency: 'INR',
+        value: total,
+        shipping: delivery,
+        items: ga4Items(cart)
+      });
+    }
+
+    // Now clear cart
     cart = {};
     updateCartUI();
+
     body.innerHTML = `
       <div class="success-screen">
         <span class="success-icon">🎉</span>
@@ -1161,39 +1059,28 @@ function chkStep1Next() {
 }
 
 let selectedPayment = '';
+
+// GA4: add_payment_info fires when user selects a payment method
 function selectPayment(method) {
   selectedPayment = method;
-  ['upi','cod'].forEach(m => {
-    document.getElementById(`pm-${m}`).classList.toggle('selected', m===method);
-    document.getElementById(m+'Panel').classList.toggle('show', m===method);
+  ['upi', 'cod'].forEach(m => {
+    document.getElementById(`pm-${m}`).classList.toggle('selected', m === method);
+    document.getElementById(m + 'Panel').classList.toggle('show', m === method);
   });
-}
 
-function selBank(btn) {
-  document.querySelectorAll('.bank-btn').forEach(b => b.classList.remove('sel'));
-  btn.classList.add('sel');
-}
-
-function fmtCard(inp) {
-  let v = inp.value.replace(/\D/g,'').slice(0,16);
-  inp.value = v.replace(/(.{4})/g,'$1 ').trim();
-  const disp = (v+'•'.repeat(Math.max(0,16-v.length))).replace(/(.{4})/g,'$1 ').trim();
-  document.getElementById('cardDisplayNum').textContent = disp;
-}
-
-function fmtExp(inp) {
-  let v = inp.value.replace(/\D/g,'');
-  if (v.length >= 2) v = v.slice(0,2)+'/'+v.slice(2,4);
-  inp.value = v;
-  document.getElementById('cardDisplayExp').textContent = v || 'MM/YY';
+  if (typeof gtag === 'function') {
+    const subtotal = cartTotal();
+    gtag('event', 'add_payment_info', {
+      currency: 'INR',
+      value: subtotal + getDeliveryFee(subtotal),
+      payment_type: method === 'upi' ? 'UPI' : 'Cash on Delivery',
+      items: ga4Items(cart)
+    });
+  }
 }
 
 function chkStep2Next() {
   if (!selectedPayment) { alert('Please select a payment method.'); return; }
-  if (selectedPayment === 'upi') {
-    const upiId = document.getElementById('upiId').value.trim();
-    // QR scan is valid too — only require UPI ID if they typed something partial
-  }
   checkoutData.payment = selectedPayment;
   checkoutStep = 3;
   renderCheckoutStep();
@@ -1220,26 +1107,48 @@ function doTrack() {
   inp.style.borderColor = '';
   const tl = document.getElementById('trackTL');
   tl.classList.add('show');
-  setTimeout(() => tl.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+  setTimeout(() => tl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
 // ─────────────────────────────────────
-//  SCROLL ANIMATIONS
+//  SCROLL ANIMATIONS + GA4: view_item
 // ─────────────────────────────────────
+const viewedItems = new Set(); // prevent repeat firings
+
 const obs = new IntersectionObserver((entries) => {
-  entries.forEach(el => { if (el.isIntersecting) { el.target.style.opacity='1'; el.target.style.transform='translateY(0)'; } });
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.style.opacity = '1';
+      el.target.style.transform = 'translateY(0)';
+
+      // GA4: view_item — fires once per product card when it enters the viewport
+      const productId = el.target.dataset.productId;
+      if (productId && !viewedItems.has(productId) && typeof gtag === 'function') {
+        viewedItems.add(productId);
+        const p = PRODUCTS.find(p => p.id === +productId);
+        if (p) {
+          gtag('event', 'view_item', {
+            currency: 'INR',
+            value: p.price,
+            items: [{ item_id: p.id, item_name: p.name, price: p.price }]
+          });
+        }
+      }
+    }
+  });
 }, { threshold: 0.08 });
 
 // ─────────────────────────────────────
 //  INIT
 // ─────────────────────────────────────
-
 renderProducts();
 document.querySelectorAll('.product-card, .service-card, .hero-card, .step, .gallery-item, .logistics-card').forEach(el => {
-  el.style.opacity='0'; el.style.transform='translateY(28px)';
-  el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   obs.observe(el);
 });
 </script>
+
 </body>
 </html>
