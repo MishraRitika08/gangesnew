@@ -709,12 +709,29 @@ function renderProducts() {
 // ─────────────────────────────────────
 //  CART ACTIONS
 // ─────────────────────────────────────
+// ─────────────────────────────────────
+//  CART ACTIONS WITH GA4 TRACKING
+// ─────────────────────────────────────
 function addToCart(id) {
   cart[id] = (cart[id] || 0) + 1;
   updateProductBtn(id);
   updateCartUI();
-  // flash open cart
   openCart();
+
+  // ----- GA4 Tracking -----
+  const product = PRODUCTS.find(p => p.id === id);
+  if (product && typeof gtag === 'function') {
+    gtag('event', 'add_to_cart', {
+      currency: 'INR',
+      value: product.price,
+      items: [{
+        item_id: product.id,
+        item_name: product.name,
+        price: product.price
+      }]
+    });
+    console.log(`GA4: Added ${product.name} to cart`);
+  }
 }
 
 function changeQty(id, delta) {
