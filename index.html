@@ -12,6 +12,60 @@
   gtag('js', new Date());
   gtag('config', 'G-2XQ13LLW2E');
 </script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  // Fires when page loads - tracks all products viewed
+  window.dataLayer.push({
+    event: "view_item_list",
+    ecommerce: {
+      items: [
+        {
+          item_name: "Organic Vegetables",
+          item_id: "PROD-001",
+          price: 30,
+          item_category: "Fresh",
+          quantity: 1
+        },
+        {
+          item_name: "Whole Spice Collection",
+          item_id: "PROD-002",
+          price: 50,
+          item_category: "Spices",
+          quantity: 1
+        },
+        {
+          item_name: "Premium Basmati Rice",
+          item_id: "PROD-003",
+          price: 120,
+          item_category: "Staple",
+          quantity: 1
+        },
+        {
+          item_name: "Homestyle Pickles",
+          item_id: "PROD-004",
+          price: 80,
+          item_category: "Artisan",
+          quantity: 1
+        },
+        {
+          item_name: "Dairy & Paneer",
+          item_id: "PROD-005",
+          price: 45,
+          item_category: "Fresh",
+          quantity: 1
+        },
+        {
+          item_name: "Indian Snacks & Sweets",
+          item_id: "PROD-006",
+          price: 20,
+          item_category: "Snacks",
+          quantity: 1
+        }
+      ]
+    }
+  });
+</script>
 
 </head>
 
