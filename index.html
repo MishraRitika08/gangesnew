@@ -12,14 +12,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
 <title>Ganges Shopping</title>
 
+
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2XQ13LLW2E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  
   gtag('js', new Date());
   gtag('config', 'G-2XQ13LLW2E');
 </script>
+
+
 <script>
   window.dataLayer = window.dataLayer || [];
 
@@ -651,15 +655,19 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
       <div class="contact-detail"><div class="detail-icon">📧</div><div class="detail-text">hello@gangesgrocery.in</div></div>
       <div class="contact-detail"><div class="detail-icon">🕐</div><div class="detail-text">Mon–Sat: 8 AM – 9 PM · Sun: 9 AM – 7 PM</div></div>
     </div>
-    <form onsubmit="handleSubmit(event)">
-      <div class="form-row">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Email Address" required>
-      </div>
-      <input type="tel" placeholder="Phone Number">
-      <textarea placeholder="Your message or order enquiry..."></textarea>
-      <button type="submit" class="submit-btn">Send Message →</button>
-    </form>
+    
+  <form id="contact-form" onsubmit="handleSubmit(event)">
+
+  <div class="form-row">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Email Address" required>
+  </div>
+  <input type="tel" placeholder="Phone Number">
+  <textarea placeholder="Your message or order enquiry..."></textarea>
+  <button type="submit" class="submit-btn">Send Message →</button>
+</form>
+
+
   </div>
 </section>
 
@@ -737,7 +745,7 @@ function addToCart(productId) {
 }
 
   // ... rest of your existing addToCart logic below
-}
+
 
 // ─────────────────────────────────────
 //  CART ACTIONS
