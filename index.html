@@ -716,30 +716,27 @@ function ga4Items(cartSnapshot) {
 
 // ─────────────────────────────────────
 //  RENDER PRODUCTS
-// ─────────────────────────────────────
-function renderProducts() {
-  const grid = document.getElementById('productsGrid');
-  grid.innerHTML = PRODUCTS.map(p => `
-    <div class="product-card" data-product-id="${p.id}">
-      <div class="product-img">${p.emoji}</div>
-      <div class="product-info">
-        <span class="product-tag tag-${p.tag}">${p.tagLabel}</span>
-        <div class="product-name">${p.name}</div>
-        <div class="product-desc">${p.desc}</div>
-        <div class="product-footer">
-          <span class="product-price">₹${p.price}</span>
-          <div class="atc-wrap" id="atcWrap${p.id}">
-            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">+ Add to Cart</button>
-            <div class="qty-ctrl" id="qtyCtr${p.id}">
-              <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
-              <span class="qty-num" id="qtyNum${p.id}">0</span>
-              <button class="qty-btn" onclick="changeQty(${p.id},1)">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `).join('');
+function addToCart(productId) {
+  const product = PRODUCTS.find(p => p.id === productId);
+
+  dataLayer.push({ ecommerce: null });
+  dataLayer.push({
+    event: "add_to_cart",
+    ecommerce: {
+      currency: "INR",
+      value: product.price,
+      items: [{
+        item_id: String(product.id),
+        item_name: product.name,
+        item_category: product.tag,
+        price: product.price,
+        quantity: 1
+      }]
+    }
+  });
+}
+
+  // ... rest of your existing addToCart logic below
 }
 
 // ─────────────────────────────────────
