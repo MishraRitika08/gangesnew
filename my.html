@@ -12,82 +12,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   
 <title>Ganges Shopping</title>
 
-
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2XQ13LLW2E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  
   gtag('js', new Date());
   gtag('config', 'G-2XQ13LLW2E');
 </script>
 
-
 <script>
   window.dataLayer = window.dataLayer || [];
-
-  // Fires when page loads - tracks all products viewed
   window.dataLayer.push({
     event: "view_item_list",
     ecommerce: {
       items: [
-        {
-          item_name: "Organic Vegetables",
-          item_id: "PROD-001",
-          price: 30,
-          item_category: "Fresh",
-          quantity: 1
-        },
-        {
-          item_name: "Whole Spice Collection",
-          item_id: "PROD-002",
-          price: 50,
-          item_category: "Spices",
-          quantity: 1
-        },
-        {
-          item_name: "Premium Basmati Rice",
-          item_id: "PROD-003",
-          price: 120,
-          item_category: "Staple",
-          quantity: 1
-        },
-        {
-          item_name: "Homestyle Pickles",
-          item_id: "PROD-004",
-          price: 80,
-          item_category: "Artisan",
-          quantity: 1
-        },
-        {
-          item_name: "Dairy & Paneer",
-          item_id: "PROD-005",
-          price: 45,
-          item_category: "Fresh",
-          quantity: 1
-        },
-        {
-          item_name: "Indian Snacks & Sweets",
-          item_id: "PROD-006",
-          price: 20,
-          item_category: "Snacks",
-          quantity: 1
-        }
+        { item_name: "Organic Vegetables",     item_id: "PROD-001", price: 30,  item_category: "Fresh",  quantity: 1 },
+        { item_name: "Whole Spice Collection", item_id: "PROD-002", price: 50,  item_category: "Spices", quantity: 1 },
+        { item_name: "Premium Basmati Rice",   item_id: "PROD-003", price: 120, item_category: "Staple", quantity: 1 },
+        { item_name: "Homestyle Pickles",      item_id: "PROD-004", price: 80,  item_category: "Artisan",quantity: 1 },
+        { item_name: "Dairy & Paneer",         item_id: "PROD-005", price: 45,  item_category: "Fresh",  quantity: 1 },
+        { item_name: "Indian Snacks & Sweets", item_id: "PROD-006", price: 20,  item_category: "Snacks", quantity: 1 }
       ]
     }
   });
 </script>
-
-</head>
-
-<body>
-
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW5VKFVS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -194,12 +143,12 @@ nav a:hover { color: var(--saffron); }
 .product-footer { display: flex; align-items: center; justify-content: space-between; }
 .product-price { color: var(--saffron); font-weight: 600; font-size: 1.05rem; }
 .product-tag { display: inline-block; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 1rem; margin-bottom: 0.6rem; }
-.tag-fresh { background: rgba(74,124,40,0.1); color: var(--light-green); }
-.tag-spice { background: rgba(232,131,42,0.1); color: var(--saffron); }
-.tag-staple { background: rgba(26,18,6,0.06); color: var(--muted); }
+.tag-fresh  { background: rgba(74,124,40,0.1);  color: var(--light-green); }
+.tag-spice  { background: rgba(232,131,42,0.1); color: var(--saffron); }
+.tag-staple { background: rgba(26,18,6,0.06);   color: var(--muted); }
 
 /* Add to Cart button with qty control */
-.atc-wrap { display: flex; align-items: center; gap: 0; }
+.atc-wrap { display: flex; align-items: center; }
 .add-to-cart-btn {
   background: var(--saffron); color: white; border: none; border-radius: 2rem;
   padding: 0.45rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
@@ -207,7 +156,7 @@ nav a:hover { color: var(--saffron); }
   white-space: nowrap;
 }
 .add-to-cart-btn:hover { background: var(--terracotta); transform: scale(1.05); }
-.qty-ctrl { display: none; align-items: center; gap: 0; background: var(--saffron); border-radius: 2rem; overflow: hidden; }
+.qty-ctrl { display: none; align-items: center; background: var(--saffron); border-radius: 2rem; overflow: hidden; }
 .qty-ctrl.show { display: flex; }
 .qty-btn { background: none; border: none; color: white; width: 30px; height: 30px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
 .qty-btn:hover { background: rgba(0,0,0,0.15); }
@@ -430,6 +379,13 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
   .chk-row { grid-template-columns: 1fr; }
 }
 </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TW5VKFVS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- CART OVERLAY -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
@@ -655,19 +611,15 @@ footer p { color: rgba(255,255,255,0.3); font-size: 0.82rem; }
       <div class="contact-detail"><div class="detail-icon">📧</div><div class="detail-text">hello@gangesgrocery.in</div></div>
       <div class="contact-detail"><div class="detail-icon">🕐</div><div class="detail-text">Mon–Sat: 8 AM – 9 PM · Sun: 9 AM – 7 PM</div></div>
     </div>
-    
-  <form id="contact-form" onsubmit="handleSubmit(event)">
-
-  <div class="form-row">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Email Address" required>
-  </div>
-  <input type="tel" placeholder="Phone Number">
-  <textarea placeholder="Your message or order enquiry..."></textarea>
-  <button type="submit" class="submit-btn">Send Message →</button>
-</form>
-
-
+    <form id="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+      </div>
+      <input type="tel" placeholder="Phone Number">
+      <textarea placeholder="Your message or order enquiry..."></textarea>
+      <button type="submit" class="submit-btn">Send Message →</button>
+    </form>
   </div>
 </section>
 
@@ -718,14 +670,42 @@ function cartItemCount() {
 function ga4Items(cartSnapshot) {
   return Object.entries(cartSnapshot).map(([id, qty]) => {
     const p = PRODUCTS.find(p => p.id === +id);
-    return { item_id: p.id, item_name: p.name, price: p.price, quantity: qty };
+    return { item_id: String(p.id), item_name: p.name, item_category: p.tag, price: p.price, quantity: qty };
   });
-}// ─────────────────────────────────────
+}
+
+// ─────────────────────────────────────
+//  RENDER PRODUCTS  ← THE MISSING FUNCTION (NOW ADDED)
+// ─────────────────────────────────────
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = PRODUCTS.map(p => `
+    <div class="product-card" data-product-id="${p.id}">
+      <div class="product-img">${p.emoji}</div>
+      <div class="product-info">
+        <span class="product-tag tag-${p.tag}">${p.tagLabel}</span>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div class="product-price">₹${p.price}</div>
+          <div class="atc-wrap" id="atcWrap${p.id}">
+            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">+ Add</button>
+            <div class="qty-ctrl" id="qtyCtr${p.id}">
+              <button class="qty-btn" onclick="changeQty(${p.id}, -1)">−</button>
+              <span class="qty-num" id="qtyNum${p.id}">0</span>
+              <button class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─────────────────────────────────────
 //  CART ACTIONS
 // ─────────────────────────────────────
-
 function addToCart(productId) {
-  // --- Cart logic ---
   cart[productId] = (cart[productId] || 0) + 1;
   updateProductBtn(productId);
   updateCartUI();
@@ -742,26 +722,21 @@ function addToCart(productId) {
     quantity: 1
   };
 
-  // --- GA4 via GTM dataLayer ---
-  dataLayer.push({ ecommerce: null }); // Clear previous ecommerce object
+  // GA4 via GTM dataLayer
+  dataLayer.push({ ecommerce: null });
   dataLayer.push({
     event: "add_to_cart",
-    ecommerce: {
-      currency: "INR",
-      value: product.price,
-      items: [itemPayload]
-    }
+    ecommerce: { currency: "INR", value: product.price, items: [itemPayload] }
   });
 
-  // --- GA4 via gtag (direct) ---
+  // GA4 via gtag (direct)
   if (typeof gtag === "function") {
     gtag("event", "add_to_cart", {
-      currency: "INR",
-      value: product.price,
-      items: [itemPayload]
+      currency: "INR", value: product.price, items: [itemPayload]
     });
   }
 }
+
 // GA4: remove_from_cart (full remove via trash icon)
 function removeFromCart(id) {
   const p = PRODUCTS.find(p => p.id === +id);
@@ -769,7 +744,7 @@ function removeFromCart(id) {
     gtag('event', 'remove_from_cart', {
       currency: 'INR',
       value: p.price * (cart[id] || 1),
-      items: [{ item_id: p.id, item_name: p.name, price: p.price, quantity: cart[id] || 1 }]
+      items: [{ item_id: String(p.id), item_name: p.name, item_category: p.tag, price: p.price, quantity: cart[id] || 1 }]
     });
   }
   delete cart[id];
@@ -777,10 +752,9 @@ function removeFromCart(id) {
   updateCartUI();
 }
 
-// GA4: remove_from_cart when qty decremented to 0
+// GA4: remove_from_cart when qty decremented
 function changeQty(id, delta) {
-  const prevQty = cart[id] || 0;
-  cart[id] = prevQty + delta;
+  cart[id] = (cart[id] || 0) + delta;
 
   if (delta < 0 && typeof gtag === 'function') {
     const p = PRODUCTS.find(p => p.id === +id);
@@ -788,7 +762,7 @@ function changeQty(id, delta) {
       gtag('event', 'remove_from_cart', {
         currency: 'INR',
         value: p.price,
-        items: [{ item_id: p.id, item_name: p.name, price: p.price, quantity: 1 }]
+        items: [{ item_id: String(p.id), item_name: p.name, item_category: p.tag, price: p.price, quantity: 1 }]
       });
     }
   }
@@ -868,21 +842,15 @@ function renderCartItems() {
 }
 
 // ─────────────────────────────────────
-//  CART OPEN/CLOSE
+//  CART OPEN / CLOSE
 // ─────────────────────────────────────
-
-// GA4: view_cart
 function openCart() {
   document.getElementById('cartDrawer').classList.add('open');
   document.getElementById('cartOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 
   if (typeof gtag === 'function' && Object.keys(cart).length > 0) {
-    gtag('event', 'view_cart', {
-      currency: 'INR',
-      value: cartTotal(),
-      items: ga4Items(cart)
-    });
+    gtag('event', 'view_cart', { currency: 'INR', value: cartTotal(), items: ga4Items(cart) });
   }
 }
 
@@ -898,21 +866,13 @@ function closeCart() {
 let checkoutStep = 1;
 let checkoutData = {};
 
-// GA4: begin_checkout
 function openCheckout() {
   closeCart();
-
   if (typeof gtag === 'function') {
     const subtotal = cartTotal();
-    gtag('event', 'begin_checkout', {
-      currency: 'INR',
-      value: subtotal + getDeliveryFee(subtotal),
-      items: ga4Items(cart)
-    });
+    gtag('event', 'begin_checkout', { currency: 'INR', value: subtotal + getDeliveryFee(subtotal), items: ga4Items(cart) });
   }
-
-  checkoutStep = 1;
-  checkoutData = {};
+  checkoutStep = 1; checkoutData = {};
   renderCheckoutStep();
   document.getElementById('checkoutModal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -979,13 +939,8 @@ function renderCheckoutStep() {
     const total = subtotal + getDeliveryFee(subtotal);
     title.textContent = 'Choose Payment';
 
-    // GA4: add_payment_info (fires when payment step is shown)
     if (typeof gtag === 'function') {
-      gtag('event', 'add_shipping_info', {
-        currency: 'INR',
-        value: total,
-        items: ga4Items(cart)
-      });
+      gtag('event', 'add_shipping_info', { currency: 'INR', value: total, items: ga4Items(cart) });
     }
 
     body.innerHTML = stepsHTML(2) + `
@@ -1002,7 +957,6 @@ function renderCheckoutStep() {
         </div>
       </div>
 
-      <!-- UPI -->
       <div class="upi-panel" id="upiPanel">
         <div class="upi-qr">
           <svg width="120" height="120" viewBox="0 0 120 120" style="margin:0 auto 0.8rem;display:block;">
@@ -1054,7 +1008,6 @@ function renderCheckoutStep() {
         <input class="chk-input" placeholder="yourname@bank" id="upiId" style="background:var(--cream);color:var(--text);border-color:rgba(0,0,0,0.1);margin-bottom:0.5rem;">
       </div>
 
-      <!-- COD -->
       <div class="cod-panel" id="codPanel">
         <div class="cod-info">
           <div class="cod-icon">💵</div>
@@ -1075,7 +1028,6 @@ function renderCheckoutStep() {
   else if (checkoutStep === 3) {
     title.textContent = 'Order Confirmed!';
     const orderId = 'GG-' + Date.now().toString().slice(-8);
-
     const subtotal = cartTotal();
     const delivery = getDeliveryFee(subtotal);
     const total = subtotal + delivery;
@@ -1083,15 +1035,11 @@ function renderCheckoutStep() {
     // GA4: purchase — fire BEFORE clearing cart
     if (typeof gtag === 'function') {
       gtag('event', 'purchase', {
-        transaction_id: orderId,
-        currency: 'INR',
-        value: total,
-        shipping: delivery,
-        items: ga4Items(cart)
+        transaction_id: orderId, currency: 'INR', value: total,
+        shipping: delivery, items: ga4Items(cart)
       });
     }
 
-    // Now clear cart
     cart = {};
     updateCartUI();
 
@@ -1115,11 +1063,11 @@ function renderCheckoutStep() {
 //  CHECKOUT STEP HANDLERS
 // ─────────────────────────────────────
 function chkStep1Next() {
-  const name = document.getElementById('chkName').value.trim();
+  const name  = document.getElementById('chkName').value.trim();
   const phone = document.getElementById('chkPhone').value.trim();
-  const addr = document.getElementById('chkAddr').value.trim();
-  const city = document.getElementById('chkCity').value.trim();
-  const pin = document.getElementById('chkPin').value.trim();
+  const addr  = document.getElementById('chkAddr').value.trim();
+  const city  = document.getElementById('chkCity').value.trim();
+  const pin   = document.getElementById('chkPin').value.trim();
   if (!name || !phone || !addr || !pin) { alert('Please fill in all delivery details.'); return; }
   checkoutData = { name, phone, addr, city, pin };
   checkoutStep = 2;
@@ -1128,7 +1076,6 @@ function chkStep1Next() {
 
 let selectedPayment = '';
 
-// GA4: add_payment_info fires when user selects a payment method
 function selectPayment(method) {
   selectedPayment = method;
   ['upi', 'cod'].forEach(m => {
@@ -1181,7 +1128,7 @@ function doTrack() {
 // ─────────────────────────────────────
 //  SCROLL ANIMATIONS + GA4: view_item
 // ─────────────────────────────────────
-const viewedItems = new Set(); // prevent repeat firings
+const viewedItems = new Set();
 
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(el => {
@@ -1189,16 +1136,14 @@ const obs = new IntersectionObserver((entries) => {
       el.target.style.opacity = '1';
       el.target.style.transform = 'translateY(0)';
 
-      // GA4: view_item — fires once per product card when it enters the viewport
       const productId = el.target.dataset.productId;
       if (productId && !viewedItems.has(productId) && typeof gtag === 'function') {
         viewedItems.add(productId);
         const p = PRODUCTS.find(p => p.id === +productId);
         if (p) {
           gtag('event', 'view_item', {
-            currency: 'INR',
-            value: p.price,
-            items: [{ item_id: p.id, item_name: p.name, price: p.price }]
+            currency: 'INR', value: p.price,
+            items: [{ item_id: String(p.id), item_name: p.name, item_category: p.tag, price: p.price }]
           });
         }
       }
